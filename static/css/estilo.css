@@ -4,3 +4,8 @@ a{
 img{
     width: 500px;
 }
+
+table, tr, th, td{
+    border: 1px black;
+    border-collapse: collapse;
+}

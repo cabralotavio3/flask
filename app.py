@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -6,12 +6,25 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/aula/')
-@app.route('/aula/<nome>')
-@app.route('/aula/<nome>/<curso>/<int:ano_nasc>')
-def aula(nome = 'Otávio Cabral', curso = '2°informatica', ano_nasc = 2007):
-    dados = {'nome' : nome, 'curso' : curso, 'ano_nasc' : ano_nasc }
-    return render_template('aula.html',dados_html =dados)
+@app.route('/banda/')
+@app.route('/banda/<banda>')
+@app.route('/banda/<banda>/<cantor>/<int:nmr_albuns>')
+def aula(banda = 'Alice in chains', cantor = 'Layne staley', nmr_albuns = 4):
+    dados = {'banda' : banda, 'cantor' : cantor, 'nmr_albuns' : nmr_albuns }
+    return render_template('banda.html',dados_html =dados)
+
+@app.route('/form')
+def form():
+    return render_template('form.html')
+
+@app.route('/dados', methods=['POST'])
+def dados():
+    dados = request.form
+    return render_template('dados.html', dados_html = dados)
+
+@app.route
+def base():
+    return render_template('base.html')
 
 if __name__ == '__main__':
     app.run()

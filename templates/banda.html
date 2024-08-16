@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Banda : {{dados_html.banda}}</h1>
+<img src="{{url_for('static', filename='img/alice_unpluged.webp')}}">
+<h3>Cantor: {{dados_html.cantor}}</h3>
+<h4>nmr_albuns : {{dados_html.nmr_albuns}}</h4>
+
+<a href="/">voltar</a>
+
+{% endblock %}
