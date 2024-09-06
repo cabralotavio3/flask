@@ -7,6 +7,7 @@
             <th>Nome:   </th>
             <th>Email:  </th>
             <th>Idade:  </th>
+            <th>Editar: </th>
             <th>Remover:</th>
         </tr>
          {% for usuario in dados_html %}
@@ -15,7 +16,10 @@
                 <td>{{usuario.email}}</td>
                 <td>{{usuario.idade}}</td>
                 <td>
-                    <a href="/usuario/remove/{{usuario.id}}">Remover</a>
+                    <a class="editar"href="/usuario/edita/{{usuario.id}}">Editar</a>
+                </td>
+                <td>
+                    <a class="remover"href="/usuario/remove/{{usuario.id}}">Remover</a>
                 </td>
             </tr>
         {% endfor %}

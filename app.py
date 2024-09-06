@@ -71,12 +71,35 @@ def usuario_save():
 def usuario_remove(id):
     if id > 0:
         usuario = Usuario.query.get(id)
-        db.session.remove(usuario)
+        db.session.delete(usuario)
         db.session.commit()
         flash('Foi Jubilado Com sucesso!!!!!!!')
         return redirect('/usuario')
     else:
         flash('Deu certo nao irmao faz o L')
+        return redirect('/usuario')
+    
+@app.route('/usuario/edita/<int:id>')
+def usuario_edita(id):
+        usuario = Usuario.query.get(id)
+        return render_template('usuario_edita.html', dados_html=usuario)
+
+@app.route('/usuario/editasave', methods = ['POST'])
+def usuario_editasave():
+    id = request.form.get('id')
+    nome = request.form.get('nome')
+    email = request.form.get('email')
+    idade = request.form.get('idade')
+    if id and nome and email and idade:
+        usuario = Usuario.query.get(id)
+        usuario.nome = nome
+        usuario.email = email
+        usuario.idade = idade
+        db.session.commit()
+        flash('Dados atualizados com sucesso!!')
+        return redirect('/usuario')
+    else:
+        flash('Está faltando dados!')
         return redirect('/usuario')
 @app.route
 def base():
